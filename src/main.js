@@ -47,8 +47,58 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 // Custom Script start here
+// Set the ReCAPTCHA for Phone SignIn
+window.recaptchaVerifier = new RecaptchaVerifier(
+  "btnPhone",
+  {
+    size: "invisible",
+    callback: (response) => {
+      console.log("Captcha Done");
+    },
+  },
+  auth
+);
+
+// Initializer
+const loginSection = document.getElementById("loginSection");
+const registerSection = document.getElementById("registerSection");
+const homeSection = document.getElementById("homeSection");
+const loginForm = document.getElementById("login");
+const registerForm = document.getElementById("register");
+const btnLogout = document.getElementById("btnLogout");
+const btnLoginWithGoogle = document.getElementById("btnGoogle");
+const btnLoginWithGithub = document.getElementById("btnGithub");
+const btnLoginWithPhone = document.getElementById("btnPhone");
+// Phone Modal
+const modalLoginWithPhone = document.getElementById("phoneModal");
+// Phone Modal - Validation
+const modalLoginWithPhoneVerification = document.getElementById(
+  "phoneModalVerification"
+);
+const validatatePhoneForm = document.getElementById("formModalVerification");
+const btnLoginWithPhoneVerification = document.getElementById(
+  "btnPhoneVerification"
+);
+const btnLoginWithPhoneVerificationDismiss = document.getElementById(
+  "btnPhoneVerificationCancel"
+);
+
+// Phone Modal - Success
+const modalLoginWithPhoneVerificationOK = document.getElementById(
+  "phoneModalVerificationOk"
+);
+const btnLoginWithPhoneVerificationOk = document.getElementById(
+  "btnPhoneVerificationOk"
+);
+
+const appVerifier = window.recaptchaVerifier;
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    loginSection.style.display = "none";
+    registerSection.style.display = "none";
+    homeSection.style.display = "block";
+
     console.log("Masuk");
 
     const displayName = user.displayName;
@@ -69,25 +119,15 @@ onAuthStateChanged(auth, (user) => {
       uid,
     });
   } else {
+    loginSection.style.display = "block";
+    registerSection.style.display = "none";
+    homeSection.style.display = "none";
+
     console.log("User belum masuk");
   }
 });
 
-// Set the ReCAPTCHA for Phone SignIn
-window.recaptchaVerifier = new RecaptchaVerifier(
-  "btnPhone",
-  {
-    size: "invisible",
-    callback: (response) => {
-      console.log("Captcha Done");
-    },
-  },
-  auth
-);
-
-const appVerifier = window.recaptchaVerifier;
-
-document.getElementById("login").addEventListener("submit", async (e) => {
+loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // Get data
@@ -103,7 +143,7 @@ document.getElementById("login").addEventListener("submit", async (e) => {
   console.log(user);
 });
 
-document.getElementById("register").addEventListener("submit", async (e) => {
+registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // Get data
@@ -119,25 +159,38 @@ document.getElementById("register").addEventListener("submit", async (e) => {
   console.log(user);
 });
 
-document.getElementById("btnLogout").addEventListener("click", async () => {
+btnLogout.addEventListener("click", async () => {
   await signOut(auth);
   console.log("User sudah berhasil signOut");
 });
 
-document.getElementById("btnGoogle").addEventListener("click", async () => {
+btnLoginWithGoogle.addEventListener("click", async () => {
   const response = signInWithPopup(auth, googleProvider);
   console.log(response);
 });
 
-document.getElementById("btnGithub").addEventListener("click", async () => {
+btnLoginWithGithub.addEventListener("click", async () => {
   const response = signInWithPopup(auth, githubProvider);
   console.log(response);
 });
 
-document.getElementById("btnPhone").addEventListener("click", async () => {
+btnLoginWithPhone.addEventListener("click", async () => {
+  modalLoginWithPhone.style.display = "flex";
+  modalLoginWithPhoneVerification.style.display = "block";
+  modalLoginWithPhoneVerificationOK.style.display = "none";
+});
+
+validatatePhoneForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Get data
+  const data = Object.fromEntries(new FormData(e.target).entries());
+
+  // console.log(data);
+
   const confirmationResult = await signInWithPhoneNumber(
     auth,
-    "+6282299505050",
+    data["phone-modal-verification-number"],
     appVerifier
   );
 
@@ -147,4 +200,16 @@ document.getElementById("btnPhone").addEventListener("click", async () => {
   const userCredential = confirmationResult.confirm(code);
 
   console.log(userCredential);
+});
+
+btnLoginWithPhoneVerificationDismiss.addEventListener("click", () => {
+  modalLoginWithPhone.style.display = "none";
+  modalLoginWithPhoneVerification.style.display = "none";
+  modalLoginWithPhoneVerificationOK.style.display = "none";
+});
+
+btnLoginWithPhoneVerificationOk.addEventListener("click", () => {
+  modalLoginWithPhone.style.display = "none";
+  modalLoginWithPhoneVerification.style.display = "none";
+  modalLoginWithPhoneVerificationOK.style.display = "none";
 });
