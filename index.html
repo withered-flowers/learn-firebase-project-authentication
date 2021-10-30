@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- content Section -->
+      <section
+        id="content"
+        class="
+          container
+          p-4
+          mx-auto
+          min-w-full min-h-screen
+          bg-gray-100
+          flex flex-col
+          place-content-center
+        "
+      >
+        <div class="login text-center">
+          <div class="login-header mb-4">
+            <h1 class="font-extrabold text-xl">
+              Welcome to Project Authentication
+            </h1>
+          </div>
+          <!-- Login Form -->
+          <div class="login-form p-2">
+            <form action="#" id="login">
+              <div class="mb-2">
+                <input
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
+                  type="text"
+                  name="login-username"
+                  id="loginUsername"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="mb-2">
+                <input
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
+                  type="password"
+                  name="login-password"
+                  id="loginPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="mb-2">
+                <button
+                  type="submit"
+                  class="
+                    bg-gray-300
+                    hover:bg-blue-200
+                    active:bg-blue-400
+                    rounded-full
+                    px-8
+                    py-2
+                  "
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+            <div class="mb-2">or... Login With</div>
+            <div class="login-provider">
+              <button
+                id="btnGoogle"
+                class="
+                  bg-gray-300
+                  hover:bg-blue-200
+                  active:bg-blue-400
+                  rounded-full
+                  px-8
+                  py-2
+                "
+              >
+                Google
+              </button>
+              <button
+                id="btnGithub"
+                class="
+                  bg-gray-300
+                  hover:bg-blue-200
+                  active:bg-blue-400
+                  rounded-full
+                  px-8
+                  py-2
+                "
+              >
+                Github
+              </button>
+              <button
+                id="btnPhone"
+                class="
+                  bg-gray-300
+                  hover:bg-blue-200
+                  active:bg-blue-400
+                  rounded-full
+                  px-8
+                  py-2
+                "
+              >
+                Phone
+              </button>
+            </div>
+          </div>
+
+          <!-- Register Form -->
+          <div class="register-form p-2">
+            <form action="#" id="register">
+              <div class="mb-2">
+                <input
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
+                  type="text"
+                  name="register-username"
+                  id="registerUsername"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="mb-2">
+                <input
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
+                  type="password"
+                  name="register-password"
+                  id="registerPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="mb-2">
+                <button
+                  type="submit"
+                  class="
+                    bg-gray-300
+                    hover:bg-blue-200
+                    active:bg-blue-400
+                    rounded-full
+                    px-8
+                    py-2
+                  "
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="logout-form p-2">
+            <button
+              id="btnLogout"
+              class="
+                bg-gray-300
+                hover:bg-blue-200
+                active:bg-blue-400
+                rounded-full
+                px-8
+                py-2
+              "
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
