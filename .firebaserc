@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dev-that-can-be-crashed"
+  },
+  "targets": {
+    "dev-that-can-be-crashed": {
+      "hosting": {
+        "apps": [
+          "project-authentication"
+        ]
+      }
+    }
+  }
+}
