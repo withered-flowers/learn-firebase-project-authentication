@@ -106,10 +106,10 @@ onAuthStateChanged(auth, (user) => {
     registerSection.style.display = "none";
     homeSection.style.display = "block";
 
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const emailVerified = user.emailVerified;
+    // const displayName = user.displayName;
+    // const email = user.email;
+    // const photoURL = user.photoURL;
+    // const emailVerified = user.emailVerified;
 
     // The user's ID, unique to the Firebase project. Do NOT use
     // this value to authenticate with your backend server, if
@@ -118,13 +118,13 @@ onAuthStateChanged(auth, (user) => {
 
     homeContent.innerHTML = uid;
 
-    console.log({
-      displayName,
-      email,
-      photoURL,
-      emailVerified,
-      uid,
-    });
+    // console.log({
+    //   displayName,
+    //   email,
+    //   photoURL,
+    //   emailVerified,
+    //   uid,
+    // });
   } else {
     loginSection.style.display = "block";
     registerSection.style.display = "none";
@@ -148,7 +148,7 @@ loginForm.addEventListener("submit", async (e) => {
   );
 
   const user = userCredential.user;
-  console.log(user);
+  // console.log(user);
 });
 
 registerForm.addEventListener("submit", async (e) => {
@@ -164,22 +164,22 @@ registerForm.addEventListener("submit", async (e) => {
   );
 
   const user = userCredential.user;
-  console.log(user);
+  // console.log(user);
 });
 
 btnLogout.addEventListener("click", async () => {
   await signOut(auth);
-  console.log("User sudah berhasil signOut");
+  // console.log("User sudah berhasil signOut");
 });
 
 btnLoginWithGoogle.addEventListener("click", async () => {
   const response = signInWithPopup(auth, googleProvider);
-  console.log(response);
+  // console.log(response);
 });
 
 btnLoginWithGithub.addEventListener("click", async () => {
   const response = signInWithPopup(auth, githubProvider);
-  console.log(response);
+  // console.log(response);
 });
 
 btnLoginWithPhone.addEventListener("click", async () => {
@@ -224,6 +224,10 @@ validatatePhoneForm.addEventListener("submit", async (e) => {
   const userCredential = confirmationResult.confirm(code);
 
   console.log(userCredential);
+
+  modalLoginWithPhone.style.display = "none";
+  modalLoginWithPhoneVerification.style.display = "none";
+  modalLoginWithPhoneVerificationOK.style.display = "none";
 });
 
 btnLoginWithPhoneVerificationDismiss.addEventListener("click", () => {
