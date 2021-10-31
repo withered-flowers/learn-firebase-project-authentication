@@ -63,8 +63,15 @@ window.recaptchaVerifier = new RecaptchaVerifier(
 const loginSection = document.getElementById("loginSection");
 const registerSection = document.getElementById("registerSection");
 const homeSection = document.getElementById("homeSection");
+const homeContent = document.getElementById("homeContent");
 const loginForm = document.getElementById("login");
 const registerForm = document.getElementById("register");
+const btnRegisterOnLoginForm = document.getElementById(
+  "btnRegisterOnLoginForm"
+);
+const btnLoginOnRegisterForm = document.getElementById(
+  "btnLoginOnRegisterForm"
+);
 const btnLogout = document.getElementById("btnLogout");
 const btnLoginWithGoogle = document.getElementById("btnGoogle");
 const btnLoginWithGithub = document.getElementById("btnGithub");
@@ -99,8 +106,6 @@ onAuthStateChanged(auth, (user) => {
     registerSection.style.display = "none";
     homeSection.style.display = "block";
 
-    console.log("Masuk");
-
     const displayName = user.displayName;
     const email = user.email;
     const photoURL = user.photoURL;
@@ -110,6 +115,8 @@ onAuthStateChanged(auth, (user) => {
     // this value to authenticate with your backend server, if
     // you have one. Use User.getToken() instead.
     const uid = user.uid;
+
+    homeContent.innerHTML = uid;
 
     console.log({
       displayName,
@@ -122,8 +129,9 @@ onAuthStateChanged(auth, (user) => {
     loginSection.style.display = "block";
     registerSection.style.display = "none";
     homeSection.style.display = "none";
-
-    console.log("User belum masuk");
+    modalLoginWithPhone.style.display = "none";
+    modalLoginWithPhoneVerification.style.display = "none";
+    modalLoginWithPhoneVerificationOK.style.display = "none";
   }
 });
 
@@ -178,6 +186,22 @@ btnLoginWithPhone.addEventListener("click", async () => {
   modalLoginWithPhone.style.display = "flex";
   modalLoginWithPhoneVerification.style.display = "block";
   modalLoginWithPhoneVerificationOK.style.display = "none";
+});
+
+btnRegisterOnLoginForm.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  loginSection.style.display = "none";
+  registerSection.style.display = "block";
+  homeSection.style.display = "none";
+});
+
+btnLoginOnRegisterForm.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  loginSection.style.display = "block";
+  registerSection.style.display = "none";
+  homeSection.style.display = "none";
 });
 
 validatatePhoneForm.addEventListener("submit", async (e) => {

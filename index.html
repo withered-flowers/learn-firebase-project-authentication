@@ -70,7 +70,7 @@
                   placeholder="Password"
                 />
               </div>
-              <div class="mb-2">
+              <div class="mb-2 flex flex-row place-content-center">
                 <button
                   type="submit"
                   class="
@@ -84,6 +84,16 @@
                 >
                   Login
                 </button>
+
+                <p class="my-auto mx-2">or</p>
+
+                <a
+                  href="#"
+                  class="py-2 underline hover:text-blue-500"
+                  id="btnRegisterOnLoginForm"
+                >
+                  Register
+                </a>
               </div>
             </form>
             <div class="mb-2">or... Login with Social Media</div>
@@ -177,7 +187,7 @@
                   placeholder="Password"
                 />
               </div>
-              <div class="mb-2">
+              <div class="mb-2 flex flex-row place-content-center">
                 <button
                   type="submit"
                   class="
@@ -191,6 +201,14 @@
                 >
                   Register
                 </button>
+                <p class="my-auto mx-2">Or</p>
+                <a
+                  href="#"
+                  class="py-2 underline hover:text-blue-500"
+                  id="btnLoginOnRegisterForm"
+                >
+                  Back to Login
+                </a>
               </div>
             </form>
           </div>
@@ -198,6 +216,10 @@
 
           <!-- Home -->
           <div class="logout-form p-2" id="homeSection">
+            <div class="mb-2">
+              <span><p>Selamat Datang User dengan uid</p></span>
+              <span id="homeContent" class="font-extrabold">Placeholder</span>
+            </div>
             <button
               id="btnLogout"
               class="
